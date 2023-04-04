@@ -26,14 +26,14 @@
 
 <body class="p-6">
     <header
-        class="max-w-6xl m-auto bg-white dark:bg-[#01162b70] mb-4 rounded-xl py-4 px-10 flex justify-between items-center relative overflow-hidden shadow-xl shadow-sky-500/10 dark:shadow-black/10">
-        <a href="/" class="flex items-center gap-2 cursor-pointer">
-            <img class="w-16 h-16" src="/assets/images/logo.svg" alt="logo" priority />
+        class="max-w-6xl m-auto bg-white dark:bg-[#01162b70] mb-4 rounded-xl py-4 px-10 flex flex-wrap gap-4 justify-between items-center relative overflow-hidden shadow-xl shadow-sky-500/10 dark:shadow-black/10">
+        <a href="{{ route('home') }}" class="flex items-center gap-2 cursor-pointer">
+            <img class="w-16 h-16" src="{{ asset('/images/logo.svg') }}" alt="logo" />
             <span class="text-2xl font-bold leading-7 text-blue-800 dark:text-yellow-400">Ганьба<br />Deaf</span>
         </a>
 
         <nav>
-            <ul class="flex gap-4 text-blue-600 dark:text-yellow-400">
+            <ul class="flex flex-wrap gap-4 text-blue-600 dark:text-yellow-400">
                 <li>
                     <a href="{{ route('home') }}" class="hover:text-yellow-600 dark:hover:text-blue-300">Головна</a>
                 </li>
@@ -54,11 +54,11 @@
 
         <div class="flex items-center gap-4">
             <a href="//instagram.com/ganbadeaf" class="group" target="_blank">
-                <img class="w-6 scale-100 hover:scale-105 transition-all" src="/assets/images/icon_istagram.svg"
+                <img class="w-6 scale-100 hover:scale-105 transition-all" src="{{ asset('/images/icon_insta.svg') }}"
                     alt="icon_instagram" />
             </a>
             <a href="//t.me/ganbadeaf" class="group" target="_blank">
-                <img class="w-6 scale-100 hover:scale-105 transition-all" src="/assets/images/icon_tg.svg"
+                <img class="w-6 scale-100 hover:scale-105 transition-all" src="{{ asset('/images/icon_tg.svg') }}"
                     alt="icon_telegram" />
             </a>
         </div>
@@ -82,6 +82,8 @@
             </div>
         </div>
     </footer>
+
+    @stack('scripts')
 </body>
 
 </html>

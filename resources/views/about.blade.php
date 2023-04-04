@@ -2,7 +2,7 @@
     <h1 class="text-center text-3xl font-bold my-8">Про центр</h1>
     <section class="text-lg">
         <div class="flex gap-10 items-start">
-            <img src="/assets/images/logo.svg" alt="" class="w-32" />
+            <img src="{{ asset('/images/logo.svg') }}" alt="" class="w-32" />
             <div>
                 <p class="mb-4">
                     Війна Росії проти України: обстріл мирних жителів, руйнування міст, терор українців.

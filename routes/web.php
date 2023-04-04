@@ -15,4 +15,4 @@ Route::view('/donate', 'donate')->name('donate');
 
 Route::get('/black-list/{item}', function (BlackListUser $item) {
     return view('black-list.show', compact('item'));
-});
+})->name('black-list.show');

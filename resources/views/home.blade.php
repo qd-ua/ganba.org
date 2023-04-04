@@ -5,35 +5,32 @@
         <small class="inline-block py-2 px-4 bg-blue-600/10 rounded-full cursor-pointer">Сортувати&nbsp;&nbsp;↕️</small>
     </div>
     <section>
-        <div class="grid grid-cols-4 mb-6 justify-around gap-6">
+        <div class="grid md:grid-cols-4 gap-8">
             @foreach ($items as $item)
-                <div class="box-border p-0 m-0">
-                <article class="block relative p-6">
-                    <a href="/black-list/{{ $item->id }}" class="relative z-[2]">
-                        <img class=" ls-is-cached lazyloaded" width="222" height="222" alt="" src="{{ asset('storage/' . $item->avatar) }}">
-                    </a>
-                <div class="infoUser">
-                    <a href="/black-list/53" class="">
-                        <h4>{{ $item->full_name }}</h4></a>
-                        <h5 class="itemCity">{{ $item->full_address }}</h5>
-                        <small>{{ $item->nomination }}</small>
-                        @if ($item->contacts)
-                            <div class="social">
-                                @foreach ($item->contacts as $contact)
-                                    <a href="{{ $contact->value }}" target="_blank" class="icon {{ $contact->type }}">
-                                        <b></b>
-                                    </a>
-                                @endforeach
-                            </div>
-                        @endif
+            <article class="relative p-5">
+                <a href="{{ route('black-list.show', $item) }}" class="grid gap-1 after:bg-blue-600/10 after:rounded-lg after:absolute after:right-0 after:left-0 after:bottom-0 after:top-20 hover:after:top-16 after:transition-all after:-z-10 group">
+                    <img class="rounded-xl mb-4 h-48 w-48 object-cover m-auto" alt="" src="/storage/{{ $item->avatar }}">
+                    <h4 class="transition-all text-blue-600 dark:text-yellow-400 group-hover:text-red-600 group-hover:dark:text-red-400">{{ $item->full_name }}</h4>
+                </a>
+                <div>
+                    <h5 class="text-sm mb-2">{{ $item->full_address }}</h5>
+                    <div class="text-sm dark:text-sky-300">{{ $item->nomination }}</div>
+                    @if ($item->contacts)
+                    <div class="mt-3 flex flex-wrap items-center justify-start gap-2">
+                        @foreach ($item->contacts as $contact)
+                            <a href="{{ $contact->value }}" target="_blank">
+                                <img src="{{ asset('images/icon_'.$contact->type.'.svg') }}" alt="" class="hover:scale-105 transition-all w-5 h-5">
+                            </a>
+                        @endforeach
                     </div>
-                </article>
+                    @endif
                 </div>
+            </article>
             @endforeach
         </div>
     </section>
-    <div class="bg-blue-600/10 p-8 flex gap-10 my-4 rounded-2xl">
-        <img src="/assets/images/logo.svg" alt="" class="w-24" />
+    <div class="bg-blue-600/10 p-8 flex gap-10 flex-wrap my-4 rounded-2xl">
+        <img src="{{ asset('/images/logo.svg') }}" alt="" class="w-24" />
         <div>
             <p class="mb-4">Центр “Ганьба Deaf” є незалежною недержавною організацією. Вона створена групою
                 активістів, нечуючими блогерами та спеціалістами з питань дослідження ознак злочинів проти національної
