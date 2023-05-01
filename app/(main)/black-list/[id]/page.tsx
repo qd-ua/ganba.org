@@ -70,7 +70,7 @@ export default function BlackList({ params }: any) {
                   <div
                     key={index}
                     className="hover:scale-105 transition-all h-16 w-16 bg-blue-500 rounded-lg grid place-items-center"
-                    data-video-src={`/storage/${file.path}`}
+                    data-video-src={`https://api.ganba.org/storage/${file.path}`}
                   >
                     📹
                   </div>

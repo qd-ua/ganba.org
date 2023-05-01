@@ -53,7 +53,7 @@ export default function Home() {
                 <Image
                   height={192}
                   width={192}
-                  className="rounded-xl mb-4 object-cover m-auto" src={`/storage/${people.avatar}`}
+                  className="rounded-xl mb-4 object-cover m-auto" src={`https://api.ganba.org/storage/${people.avatar}`}
                   alt={people.full_name} />
 
                 <h4 className="transition-all text-blue-600 dark:text-yellow-400 group-hover:text-red-600 group-hover:dark:text-red-400">
