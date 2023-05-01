@@ -1,4 +1,5 @@
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata = {
   title: 'GanbaDeaf 2.0',
@@ -14,6 +15,7 @@ export default function RootLayout({
     <html lang="uk" className="bg-sky-100 dark:bg-[#012346] text-sky-800 dark:text-blue-200">
       <body className="p-6">
         {children}
+        <Analytics />
       </body>
     </html>
   )
