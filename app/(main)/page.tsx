@@ -1,10 +1,37 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import AppLogo from '@/public/assets/images/logo.svg'
-import { usePeoplesWithContacts } from '@/src/services/people-service'
+import useAxios from 'axios-hooks'
 
-export default async function Home() {
-  const peoples = await usePeoplesWithContacts()
+interface PeopleResponse {
+  id: number
+  full_name: string
+  full_address: string | null
+  nomination: string | null
+  avatar: string | null
+  contacts: Contact[]
+}
+
+interface Contact {
+  people_id: number
+  type: string
+  value: string
+}
+
+export default function Home() {
+  const [{ data, loading, error }] = useAxios<PeopleResponse[]>({
+    baseURL: 'https://api.ganba.org',
+    url: '/v1/peoples',
+    params: {
+      fields: {
+        peoples: 'id,full_name,full_address,nomination,avatar',
+        contacts: 'people_id,type,value',
+      },
+      include: 'contacts',
+    },
+  })
 
   return (
     <>
@@ -15,7 +42,9 @@ export default async function Home() {
       </div>
       <section>
         <div className="grid md:grid-cols-4 gap-8">
-          {peoples.map((people: any, index: any) => (
+          {loading && <p>Loading...</p>}
+          {!!error && <p>Error!</p>}
+          {!!data && data.map((people: PeopleResponse, index: any) => (
             <article key={index} className="relative p-5">
               <Link
                 href={`/black-list/${people.id}`}
@@ -25,18 +54,18 @@ export default async function Home() {
                   height={192}
                   width={192}
                   className="rounded-xl mb-4 object-cover m-auto" src={`/storage/${people.avatar}`}
-                  alt={people.fullName} />
+                  alt={people.full_name} />
 
                 <h4 className="transition-all text-blue-600 dark:text-yellow-400 group-hover:text-red-600 group-hover:dark:text-red-400">
-                  {people.fullName}
+                  {people.full_name}
                 </h4>
               </Link>
               <div>
-                <h5 className="text-sm mb-2">{people.fullAddress}</h5>
+                <h5 className="text-sm mb-2">{people.full_address}</h5>
                 <div className="text-sm dark:text-sky-300">{people.nomination}</div>
                 {people.contacts && (
                   <div className="mt-3 flex flex-wrap items-center justify-start gap-2">
-                    {people.contacts.map((contact: any, index: any) => (
+                    {people.contacts.map((contact: Contact, index: any) => (
                       <Link key={index} href={contact.value} target="_blank">
                         <Image width={20} height={20} className="hover:scale-105 transition-all" src={`/assets/images/icon_${contact.type}.svg`} alt="" />
                       </Link>
