@@ -56,28 +56,41 @@ export default function BlackList({ params }: any) {
   return (
     <div className="my-10 flex flex-wrap gap-10">
       <div className="w-72">
-        <Image height={288} width={288} className="rounded-xl mb-4 object-cover lightbox-img" data-gallery="gallery" src={`/storage/${data.avatar}`} alt="" />
+        <Image
+          height={288}
+          width={288}
+          className="rounded-xl mb-4 object-cover lightbox-img"
+          data-gallery="gallery"
+          src={`https://api.ganba.org/storage/${data.avatar}`}
+          alt="" />
 
         {data.files && (
-            <div className="grid gap-2">
-              <div className="flex flex-wrap gap-2">
-                {images.map((file: File, index: any) => (
-                  <Image key={index} height={64} width={64} className="hover:scale-105 transition-all rounded-lg mb-4 object-cover" data-gallery="gallery" src={`/storage/${file.path}`} alt="" />
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {videos.map((file: File, index: any) => (
-                  <div
-                    key={index}
-                    className="hover:scale-105 transition-all h-16 w-16 bg-blue-500 rounded-lg grid place-items-center"
-                    data-video-src={`https://api.ganba.org/storage/${file.path}`}
-                  >
-                    📹
-                  </div>
-                ))}
-              </div>
+          <div className="grid gap-2">
+            <div className="flex flex-wrap gap-2">
+              {images.map((file: File, index: any) => (
+                <Image
+                  key={index}
+                  height={64}
+                  width={64}
+                  className="hover:scale-105 transition-all rounded-lg mb-4 object-cover"
+                  data-gallery="gallery"
+                  src={`https://api.ganba.org/storage/${file.path}`}
+                  alt="" />
+              ))}
             </div>
-          )}
+            <div className="flex flex-wrap gap-2">
+              {videos.map((file: File, index: any) => (
+                <div
+                  key={index}
+                  className="hover:scale-105 transition-all h-16 w-16 bg-blue-500 rounded-lg grid place-items-center"
+                  data-video-src={`https://api.ganba.org/storage/${file.path}`}
+                >
+                  📹
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-2">
