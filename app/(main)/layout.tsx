@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import AppLogo from '@/public/assets/images/logo.svg'
