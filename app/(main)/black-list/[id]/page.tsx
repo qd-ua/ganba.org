@@ -101,7 +101,7 @@ export default function BlackList({ params }: any) {
           <Link
             key={index}
             className="flex items-center gap-2 group text-blue-800 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-blue-300 text-ellipsis overflow-hidden"
-            href="{{ $contact->value }}"
+            href={contact.value}
             target="_blank"
           >
             <Image
